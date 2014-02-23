@@ -73,7 +73,9 @@ var unifi = function(hostname, port, site){
 			}
 		});
 		req.on('error', function(err){
-			cb(err.message);
+			if(_.isFunction(cb)){
+				cb(err.message);
+			}
 		});
 		req.end();
 	};
