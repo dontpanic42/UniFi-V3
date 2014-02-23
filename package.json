@@ -1,7 +1,7 @@
 {
     "name": "unifi-v3",
-    "description": "access unifi networking equipment for reboot, etc",
-    "version": "0.0.5",
+    "description": "unifi-v3 is an implementation of the Ubiquiti UniFi Controller V3.x API. This module gives you the same ability as the unifi-api Python version, plus a few extra functions.",
+    "version": "0.0.6",
     "main": "index.js",
     "engines": {
         "node": ">=0.6"
