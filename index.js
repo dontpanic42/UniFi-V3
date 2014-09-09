@@ -181,6 +181,122 @@ var unifi = function(hostname, port, site){
 		});		
 		req.end('json={"cmd":"delete-voucher", "_id":"' + _id + '"}');
 	};
+	
+	
+	_self.blockClient = function(mac,CB) {
+	var req = https.request(_.extend({},_self._options,{
+			path: '/api/s/' + _self._site + '/cmd/stamgr',
+			method: 'POST',
+			headers: {
+				'Cookie': _self._cookie
+			}
+		}),function(res){
+			var s = '';
+			res.on('data', function(chunk){
+				s += chunk.toString();
+			});
+			res.on('end', function(){
+				console.log(s);
+			});
+		});
+		req.on('error', function(err){
+			if(_.isFunction(CB)){CB(err);}
+		});		
+		req.end('json={"cmd":"block-sta", "mac":"' + mac + '"}');
+
+	};
+
+	_self.disconnectClient = function(mac,CB) {
+	var req = https.request(_.extend({},_self._options,{
+			path: '/api/s/' + _self._site + '/cmd/stamgr',
+			method: 'POST',
+			headers: {
+				'Cookie': _self._cookie
+			}
+		}),function(res){
+			var s = '';
+			res.on('data', function(chunk){
+				s += chunk.toString();
+			});
+			res.on('end', function(){
+				console.log(s);
+			});
+		});
+		req.on('error', function(err){
+			if(_.isFunction(CB)){CB(err);}
+		});		
+		req.end('json={"cmd":"kick-sta", "mac":"' + mac + '"}');
+
+	};	
+	
+	_self.updateClient = function(mac, name, email, CB) {
+	var req = https.request(_.extend({},_self._options,{
+			path: '/api/s/' + _self._site + '/cmd/stamgr',
+			method: 'POST',
+			headers: {
+				'Cookie': _self._cookie
+			}
+		}),function(res){
+			var s = '';
+			res.on('data', function(chunk){
+				s += chunk.toString();
+			});
+			res.on('end', function(){
+				console.log(s);
+			});
+		});
+		req.on('error', function(err){
+			if(_.isFunction(CB)){CB(err);}
+		});		
+		req.end('json={"cmd":"update-sta", "mac":"' + mac + '", "name":"' + name +'", "email":"' + email +'"}');
+
+	};	
+	
+	_self.authorizeGuest = function(mac, minutes, CB) {
+	var req = https.request(_.extend({},_self._options,{
+			path: '/api/s/' + _self._site + '/cmd/stamgr',
+			method: 'POST',
+			headers: {
+				'Cookie': _self._cookie
+			}
+		}),function(res){
+			var s = '';
+			res.on('data', function(chunk){
+				s += chunk.toString();
+			});
+			res.on('end', function(){
+				console.log(s);
+			});
+		});
+		req.on('error', function(err){
+			if(_.isFunction(CB)){CB(err);}
+		});		
+		req.end('json={"cmd":"authorize-guest", "mac":"' + mac + '", "minutes":"' + minutes +'"}');
+
+	};	
+	
+	_self.unauthorizeGuest = function(mac, CB) {
+	var req = https.request(_.extend({},_self._options,{
+			path: '/api/s/' + _self._site + '/cmd/stamgr',
+			method: 'POST',
+			headers: {
+				'Cookie': _self._cookie
+			}
+		}),function(res){
+			var s = '';
+			res.on('data', function(chunk){
+				s += chunk.toString();
+			});
+			res.on('end', function(){
+				console.log(s);
+			});
+		});
+		req.on('error', function(err){
+			if(_.isFunction(CB)){CB(err);}
+		});		
+		req.end('json={"cmd":"unauthorize-guest", "mac":"' + mac +'"}');
+
+	};
 };
 
 module.exports = unifi;
