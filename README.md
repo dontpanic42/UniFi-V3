@@ -98,11 +98,11 @@ Awesome, Now let's Delete all the vouchers
 	
 Tada! easy as that.
 
-//Block mac address
-default_site.blockClient(macAddress,function(err,data){
-	if(err){return console.error(err);}
-	console.log(macAddress + " is now Blocked");
-});
+	//Block mac address
+	default_site.blockClient(macAddress,function(err,data){
+		if(err){return console.error(err);}
+		console.log(macAddress + " is now Blocked");
+	});
 
 
 	//authorise mac address
