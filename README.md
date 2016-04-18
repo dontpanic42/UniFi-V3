@@ -97,3 +97,30 @@ Awesome, Now let's Delete all the vouchers
 	});
 	
 Tada! easy as that.
+
+	//Block mac address
+	default_site.blockClient(macAddress,function(err,data){
+		if(err){return console.error(err);}
+		console.log(macAddress + " is now Blocked");
+	});
+
+
+	//authorise mac address
+	default_site.authorizeGuest(macAddress, mins, function(err,data){
+		if(err){return console.error(err);}
+		console.log(macAddress + " is now Authorised for " + mins + " minutes");
+	});
+	
+	//unauthorise the mac address of the client
+	default_site.unauthorizeGuest(macAddress,function(err,data){
+		if(err){return console.error(err);}
+		console.log(macAddress + " is now unauthorised");
+	});
+	
+	//kick the mac address of the client, they can reconnect
+	default_site.disconnectClient(macAddress,function(err,data){
+		if(err){return console.error(err);}
+		console.log(macAddress + " has been kicked");
+	});
+
+
